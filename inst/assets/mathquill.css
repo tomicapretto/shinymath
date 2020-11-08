@@ -422,3 +422,11 @@
   filter: progid:DXImageTransform.Microsoft.Chroma(color='white');
   margin-top: -0.1em;
 }
+
+/* shinymath edits */
+
+.mq-math-mode.mq-editable-field.form-control{
+  padding: 4px 8px;
+  font-size: 18px; /*Make it editable in the user function*/
+  line-height: 1;
+}
