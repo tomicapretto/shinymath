@@ -2,11 +2,11 @@ var mathInputBinding = new Shiny.InputBinding();
 
 $.extend(mathInputBinding, {
   initialize: function(el) {
-    mathFieldEl = document.getElementById(el.id);
-    var mathField = MQ.MathField(mathFieldEl, {
+    el.mathFieldElement = document.getElementById(el.id);
+    el.mathField = MQ.MathField(el.mathFieldElement, {
       handlers: {
         edit: function() {
-          el.value = mathField.latex();
+          el.value = el.mathField.latex();
         }
       }
     });
@@ -23,29 +23,26 @@ $.extend(mathInputBinding, {
 
   // retrieve value
   getValue: function(el) {
+    el.value = el.mathField.latex();
+    console.log('getvalue');
     return el.value;
   },
 
   // set values
   setValue: function(el, value) {
-    el.value = value;
+    el.mathField.latex(value);
+    el.value = el.mathField.latex();
+    console.log('setValue: ' + el.value);
   },
 
   // handle messages from the server
-  receiveMessage: function(el, data) {
-    if (data.hasOwnProperty('value'))
-      this.setValue(el, data.value);
-
-    updateLabel(data.label, this._getLabelNode(el));
-
-    if (data.hasOwnProperty('placeholder'))
-      el.placeholder = data.placeholder;
-
+  receiveMessage: function(el, value) {
+    this.setValue(el, value);
     $(el).trigger('change');
   },
 
   subscribe: function(el, callback) {
-    $(el).on('keyup.mathInputBinding input.mathInputBinding', function(event) {
+    $(el).on('input.mathInputBinding', function(event) {
       callback(true);
     });
     $(el).on('change.mathInputBinding', function(event) {
@@ -62,9 +59,6 @@ $.extend(mathInputBinding, {
       policy: 'debounce',
       delay: 250
     };
-  },
-  _getLabelNode: function(el) {
-    return $(el).parent().find('label[for="' + $escape(el.id) + '"]');
   }
 });
 

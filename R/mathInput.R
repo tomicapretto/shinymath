@@ -6,11 +6,7 @@
 #'
 #' @return A mathematical input control that can be added to an UI definition.
 #' @export
-#'
 mathInput = function(inputId, label, width = NULL) {
-  js_var = paste0(inputId, "_jsvar")
-  input_latex = paste0(inputId, "_latex")
-
   shiny::tagList(
     shiny::singleton(
       shiny::tags$head(
@@ -29,25 +25,6 @@ mathInput = function(inputId, label, width = NULL) {
         style = "height:auto;",
         id = inputId
       )
-
-      # shiny::tags$span(
-      #   class = "mathquill-editable form-control",
-      #   style = "height:auto;",
-      #   id = inputId,
-      #   shiny::tags$input(
-      #     type = "text"
-      #   )
-      # )
     )
-  )
-}
-
-mathInputDeps = function() {
-  htmltools::htmlDependency(
-    name = "mathInput",
-    version = "1.0.0",
-    src = c(file = shinymath_file("assets")),
-    script = c("mathquill.min.js", "init.js", "binding.js"),
-    stylesheet = "mathquill.css"
   )
 }
