@@ -12,9 +12,10 @@ server = function(input, output, session) {
   output$output1 = renderText(input$input1)
   output$output2 = renderText(input$input2)
   observeEvent(input$update, {
-    updateMathInput(session, "input1", "x + y")
-    updateMathInput(session, "input2", "\\frac{3}{7}")
+    updateMathInput(session, "input1", label = "New label", value = "x + y")
+    updateMathInput(session, "input2", value = "\\frac{3}{7}")
   })
 }
 
 shinyApp(ui, server)
+
