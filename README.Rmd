@@ -13,10 +13,10 @@ knitr::opts_chunk$set(
 
 # shinymath
 
-<!-- badges: start -->
-<!-- badges: end -->
-
-The goal of `shinymath` is to ...
+`shinymath` is a small R package that provides a mathematical input to shiny apps.
+This input is based on [Mathquill](http://mathquill.com/) and by default returns
+a LaTeX expression. This package also uses functions from [`latex2r`](https://github.com/tomicapretto/latex2r)
+that make it possible to transform the LaTeX expressions to R code/functions.
 
 ## Installation
 
@@ -26,13 +26,40 @@ You can install the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("tomicapretto/shinymath")
 ```
+
+## Basic usage
+
+Within your UI, you call `mathInput()` as you would do with any other input.
+
+```{r, eval = FALSE}
+mathInput(inputId = "equation", label = "Math equation")
+```
+
 ## Example
 
+Currently, the app has a minimal example that I'm using to ease the development
+of the app. You can see it by running `launch_demo()`.
+
+<hr style="height:1px"> </hr>
+
 Here I'm going to include an example of how to set up a minimal app with 
-`shinymath`
+`shinymath`.
 
 ```{r example, eval=FALSE}
 library(shinymath)
-## basic example code
+# TODO
 ```
 
+## Notes
+
+While you can write any math that is accepted by Mathquill, not everything can be 
+translated to R. Since this package relies on the parser in `latex2r` for 
+translation purposes, it comes with all the limitations there. 
+For more information about the particularities of `latex2r`, see 
+[these notes](https://github.com/tomicapretto/latex2r/blob/master/README.md#supported-latex).
+
+However, many _common_ mathematical equations can be written and translated to R
+code with no problem. The following is a list of math equations in LaTeX and their 
+corresponding translation to R.
+
+**TODO**
