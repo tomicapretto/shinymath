@@ -28,8 +28,9 @@ mathInput(inputId = "equation", label = "Math equation")
 
 ## Example
 
-Currently, the app has a minimal example that I’m using to ease the
-development of the app. You can see it by running `launch_demo()`.
+Currently, the app has a small shiny app that shows all the features of
+`mathInput()` and functions exported from `latex2r` package. Use
+`launch_features()` to see it.
 
 <hr style="height:1px">
 
@@ -57,3 +58,8 @@ translated to R code with no problem. The following is a list of math
 equations in LaTeX and their corresponding translation to R.
 
 **TODO**
+
+## Things to fix
+
+  - Implicit multiplication does not seem to always work with exponents
+  - is passed as function argument, when it is a built-in constant.
