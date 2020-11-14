@@ -54,12 +54,7 @@ limitations there. For more information about the particularities of
 notes](https://github.com/tomicapretto/latex2r/blob/master/README.md#supported-latex).
 
 However, many *common* mathematical equations can be written and
-translated to R code with no problem. The following is a list of math
-equations in LaTeX and their corresponding translation to R.
-
-**TODO**
-
-## Things to fix
-
-  - Implicit multiplication does not seem to always work with exponents
-  - is passed as function argument, when it is a built-in constant.
+translated to R code with no problem.
+[Here](https://github.com/tomicapretto/latex2r#examples-1) you have a
+list of math equations in LaTeX and their corresponding translation to
+R.
