@@ -1,0 +1,29 @@
+The idea is to have an app "similar" to Geogebra, but very minimal.
+
+Here you can put one or more equations. Set parameters for the equation. They are automatically added to a plotly plot. Then you can find mins and maxs.
+
+In some future work, we can get derivatives and all that. That would be an incentivation for other people.
+
+Things to develop.
+
+* mathInput and button next to it to insert the equation. Get inspired on what I've done for other app.
+  This inserts a div with the math equation (possibly rendered in latex via MathJax from Shiny).
+  Don't use notifications to check values. Use shinyFeedback.
+  I still have to choose if I run shinyFeedback after 500ms the user stopped writing input or if it is done immediately after
+  (which is actually 250ms because of the debounce policy rate) or if I wait the user clicks on the button. I think it should give
+  the feedback before the user clicks on the button.
+* Pass mathInput to latex2fun. Obtain arguments and create sliderInputs for each argument, only if the argument hasn't been used yet..
+  Values -5 to 5, by 0.1. Fixed for now. Being able to modify that within the app without interferring too much in the UI will not be simple.
+* The function has to be plotted along all the domain that is displayed. Is it possible to access that property within plotly?
+  If not, use -20 and 20 by default, and that's it.
+* Fucntions go on a panel on a sidebar that has a scroll bar (like geogebra).
+* If possible and not very difficult add the typical three dots menu to open for options for each function. There we have "Find minimum", "Find maximum" and
+maybe Show/Hide function.
+* Use shinydashboard?
+
+
+
+* El sidebarpanel tiene un div para las ecuaciones, a su vez cada ecuacion
+va en un nuevo div donde se agrega ademas de la ecuacion, los parametros
+quie se agreguien con ella (es decir, parametros usados ne la funcion que aun
+no hayan sido cargados por otra ecuacion)

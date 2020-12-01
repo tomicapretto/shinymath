@@ -1,4 +1,9 @@
 
+**This package is under development. You can use `mathInput()` if you
+want but be aware changes may come**
+
+**Example app is not finished yet.**
+
 # shinymath
 
 `shinymath` is a small R package that provides a mathematical input to
