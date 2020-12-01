@@ -18,20 +18,24 @@ delete_button = function(id) {
     inputId = paste0("btn_remove_", id),
     label = "",
     icon = icon("window-close"),
-    style = "padding: 1px 4px;
-             background-color: transparent;
-             border-color: transparent;
-             color: #FFF;
-             margin: 10px 5px 6px 15px"
+    style = paste("padding: 1px 4px", "background-color: transparent",
+                  "border-color: transparent", "color: #FFF",
+                  "margin: 10px 5px 6px 15px", sep = ";")
   )
 }
 
 add_param_slider = function(params) {
   ids = paste0("param_", params)
-  mapply(sliderInput, ids, params, min = -5, max = 5, value = 2, step = 0.1,
+  mapply(slider_input_div, ids, params, min = -5, max = 5, value = 2, step = 0.1,
          width = "100%", SIMPLIFY = FALSE, USE.NAMES = FALSE)
 }
 
+slider_input_div = function(id, ...) {
+  div(
+    id = paste0("div_", id),
+    sliderInput(id, ...)
+  )
+}
 
 add_equation = function(equations, id, output, session) {
   ns = session$ns
@@ -48,13 +52,6 @@ add_equation = function(equations, id, output, session) {
           width = 1,
           delete_button(id)
         ),
-        fluidRow(
-          column(
-            width = 12,
-            uiOutput(ns(paste0("params_", id)))
-          ),
-          style = "margin-left:0px; margin-right:0px"
-        ),
         style = "margin-left:0px; margin-right:0px"
       )
     )
@@ -66,21 +63,36 @@ add_equation = function(equations, id, output, session) {
       tags$script(
         paste0(
           'renderMathInElement(
-          document.getElementById("', id, '"),
+           document.getElementById("', id, '"),
             {delimiters: [{left: "$", right: "$", display: false}]}
         );'
         )
       )
     )
   })
-  output[[paste0("params_", id)]] = renderUI({
-    params = equations$get_args_unique(id)
-    tagList(
-      if (length(params) > 0) {
-        add_param_slider(params)
-      } else {
-        NULL
-      }
+}
+
+add_params = function(equations, id) {
+  params = equations$get_args_unique(id)
+  if (length(params) > 0) {
+    insertUI(
+      selector = "#parameters",
+      ui = div(
+        fluidRow(
+          column(
+            width = 12,
+            add_param_slider(params)
+          ),
+          style = "margin-left:0px; margin-right:0px"
+        )
+      )
     )
-  })
+  }
+}
+
+remove_params = function(equations, id) {
+  params = equations$get_args_unique(id)
+  if (length(params) > 0) {
+    lapply(paste0("#div_param_", params), removeUI)
+  }
 }

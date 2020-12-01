@@ -8,8 +8,11 @@ function(input, output, session) {
 
     id = equations$add(input$math, expr)
     add_equation(equations, id, output, session)
+    add_params(equations, id)
+
     observeEvent(input[[paste0("btn_remove_", id)]], {
       removeUI(paste0("#", session$ns(paste0("div_", id))))
+      remove_params(equations, id)
       equations$remove(id)
     }, ignoreInit = TRUE)
   })
