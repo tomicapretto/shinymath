@@ -74,14 +74,12 @@ Equations = R6Class(
       do.call(fun, args)
     },
     evaluate_all = function(args) {
-      output = lapply(names(self$equations), function(id, args) {
-        list(
-          "name" = self$equations[[id]][["name"]],
-          "fun_values" =  self$evaluate(id, args)
-        )
-      }, args = args)
-      names(output) = names(self$equations)
-      c(list("grid" = private$grid), output)
+      values = lapply(names(self$equations), self$evaluate, args = args)
+      values = unlist(values, use.names = FALSE)
+      fun_names = unlist(lapply(self$equations, `[[`, "name"), use.names = FALSE)
+      fun_names = rep(fun_names, each = length(private$grid))
+      grid = rep(private$grid, length(self$equations))
+      return(data.frame("grid" = grid, "value" = values, "name" = fun_names))
     }
   ),
   private = list(
