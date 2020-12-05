@@ -1,6 +1,7 @@
 library(shiny)
 library(shinydashboard)
 library(shinymath)
+library(echarts4r)
 source("utils.R")
 
 body = function() {
@@ -22,7 +23,9 @@ body = function() {
         });
       })
     </script>')
-    )
+    ),
+    # Need to capture screen size and use that for height
+    echarts4rOutput("plot", height = "700px")
   )
 }
 
