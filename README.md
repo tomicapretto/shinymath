@@ -32,17 +32,11 @@ input.
 mathInput(inputId = "equation", label = "Math equation")
 ```
 
-## Example
+## Examples
 
-Currently, the app has a small shiny app that shows the features related
-to `mathInput()` and functions exported from `latex2r` package. Use
-`launch_demo()` to see it.
+### Quickstart
 
-<hr style="height:1px">
-
-</hr>
-
-Here’s a quick example to see `mathInput()` together with `latex2r()` in
+Just a quick example to see `mathInput()` together with `latex2r()` in
 action.
 
 ``` r
@@ -69,6 +63,12 @@ shinyApp(ui, server)
 ```
 
 <img src="inst/assets/shinymath.gif" width="65%">
+
+### All features demo
+
+The app has a small shiny app that shows the features related to
+`mathInput()` and functions exported from `latex2r` package. Use
+`launch_demo()` to see it.
 
 ## Notes
 
