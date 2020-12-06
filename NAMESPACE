@@ -2,8 +2,7 @@
 
 export(latex2fun)
 export(latex2r)
-export(launch_example)
-export(launch_features)
+export(launch_demo)
 export(mathInput)
 export(updateMathInput)
 import(latex2r)
